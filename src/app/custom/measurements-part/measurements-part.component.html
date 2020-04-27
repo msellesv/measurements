@@ -1,0 +1,48 @@
+<div class="part">
+    <div>
+      <h1 id="{{part.name}}">{{part.name}}</h1>
+    </div>
+    <div class="wrapper">
+      <div *ngFor="let feature of part.features" class="box" [style.grid-column]="sanitize(feature.gridColumn)" [style.grid-row]="sanitize(feature.gridRow)">
+        <div [style.grid-column]="1" [style.grid-row]="1" class="header" [ngClass]="{'background-green': feature.quality==2, 'background-orange': feature.quality==1, 'background-red': feature.quality==0}"> 
+          <span class="featureName">
+            {{feature.name}}
+          </span>
+          <span *ngIf="feature.quality==2" class="quality-icon-header material-icons"> check_circle_outline </span>
+          <span *ngIf="feature.quality==1" class="quality-icon-header material-icons"> error_outline </span> 
+          <span *ngIf="feature.quality==0" class="quality-icon-header material-icons"> highlight_off </span> 
+        </div>
+        <div [style.grid-column]="1" [style.grid-row]="2" class="measurement-tables">
+          <div class="box-table" *ngFor="let table of feature.features; let i = index" [style.grid-column]="i+1" [style.grid-row]="1">
+            <table mat-table [dataSource]="table.data">
+              <ng-container matColumnDef="Control">
+                <th mat-header-cell *matHeaderCellDef> Control </th>
+                <td mat-cell *matCellDef="let element"> {{element.control}} </td>
+              </ng-container>
+              <ng-container matColumnDef="Dev">
+                <th mat-header-cell *matHeaderCellDef class="header-center"> Dev </th>
+                <td mat-cell *matCellDef="let element" class="cell-center"> {{element.dev}} </td>
+              </ng-container>
+              <ng-container matColumnDef="DevOutTol">
+                <th mat-header-cell *matHeaderCellDef class="header-center"> Dev Out Tol </th>
+                <td mat-cell *matCellDef="let element" class="cell-center"> {{element.devOutTol}} </td>
+              </ng-container>
+                <ng-container matColumnDef="Quality">
+                  <th mat-header-cell *matHeaderCellDef>  </th>
+                <td mat-cell *matCellDef="let element"> 
+                  <span *ngIf="element.quality==2" class="quality-icon material-icons green"> check_circle_outline </span>
+                  <span *ngIf="element.quality==1" class="quality-icon material-icons orange"> error_outline </span> 
+                  <span *ngIf="element.quality==0" class="quality-icon material-icons red"> highlight_off </span> 
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+          </div>
+        </div>
+        <div [style.grid-column]="1" [style.grid-row]="3" class="footer">
+          <span class="material-icons">  more_horiz </span>
+        </div>
+      </div>
+    </div>
+</div>

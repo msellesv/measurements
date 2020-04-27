@@ -1,0 +1,55 @@
+:host {
+  body {
+    margin: 40px;
+  }
+
+  .tableOfContentContainer {
+    padding-top: 1em;
+    padding-left: 2em;
+    position: fixed;
+    right: 10px;
+    top: 150px;
+    width: 150px;
+  }
+  .docs-toc-container {
+    border-left: 4px solid #828282;
+    font-weight: 700;
+  }
+  a {
+    text-decoration: none;
+    color: #737373;
+    font-weight: 400 !important;
+    display: block;
+  }
+  a:hover {
+    color: #828282;
+  }
+  .tableOfContent {
+    padding: 5px 0 10px 10px;
+    font-size: 13px;
+  }
+  #content {
+    width: 100%;
+    padding-right: 150px;
+  }
+  #contentAndToc {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  // responsive
+  @media (max-width: 1000px) {
+    #content {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 800px) {
+    #content {
+      padding-right: 0px;
+    }
+    .tableOfContentContainer {
+      display: none;
+    }
+  }
+}

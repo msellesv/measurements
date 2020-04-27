@@ -1,0 +1,20 @@
+
+<mat-toolbar>
+  <span>Measurements</span>
+</mat-toolbar>
+<div id="contentAndToc">
+  <div id="content">
+    <app-measurements-part *ngFor="let part of measurementService.parts" [part]="part"></app-measurements-part>
+  </div>
+  <div class="tableOfContentContainer">
+    <div class="tableOfContent docs-toc-container">
+      <div  class="docs-toc-heading">Parts</div>
+      <nav>
+        <a *ngFor="let part of measurementService.parts" href="/measurements#{{part.name}}"  class="docs-level-h3 docs-link ng-star-inserted"> {{part.name}}  </a> <br>
+        <mat-spinner [diameter]="20" *ngIf="measurementService.loadingParts"></mat-spinner>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
